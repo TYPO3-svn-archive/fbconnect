@@ -1,0 +1,104 @@
+This template contains the HTML used when the Facebook Connect extension is inserted into a page.
+
+The normal logout-button must be wrapped in
+	<a href="#" onclick="FB.Connect.logout();">Logout</a>
+See http://wiki.developers.facebook.com/index.php/JS_API_T_FB.Connect, look for logout() and logoutAndRedirect().
+
+The Javascript needed on every page where we need Facebook magic
+<!-- ###INIT### begin -->
+<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
+<script type="text/javascript">
+	FB_RequireFeatures(["XFBML"], function() {
+		FB.init("###APIKEY###", "/###SITERELPATH###res/xd_receiver.htm");
+	});
+</script>
+<!-- ###INIT### end -->
+
+
+The Facebook Connect button
+See different styles at http://wiki.developers.facebook.com/index.php/Fb:login-button
+<!-- ###CONNECT_BUTTON### begin -->
+<fb:login-button onlogin="###ONLOGIN###"></fb:login-button>
+<!-- ###CONNECT_BUTTON### end -->
+
+
+Profile picture and user name - inserted in templates below
+<!-- ###PROFILE### begin -->
+<div>
+	<fb:profile-pic uid="###UID###" size="thumb" facebook-logo="true" linked="false"></fb:profile-pic><br />
+	<fb:name uid="###UID###" linked="false" useyou="false" ></fb:name>
+</div>
+<!-- ###PROFILE### end -->
+
+
+Info shown when autologin fails (no FE user, but a connected FB user)
+<!-- ###AUTOLOGIN_FAIL### begin -->
+###PROFILE###
+<p>
+	Your Facebook account is not linked to a website user.<br/>
+	Please use the normal login and then link your accounts.
+</p>
+<!-- ###AUTOLOGIN_FAIL### end -->
+
+
+Info shown when an FE user with no facebook link is logged in and no Facebook user is connected
+<!-- ###NO_LINK_NOT_CONNECTED### begin -->
+<p>
+	If you have a Facebook account, you can connect it to your website user.
+</p> 
+###CONNECT_BUTTON### 
+<!-- ###NO_LINK_NOT_CONNECTED### end -->
+
+
+Info shown when an FE user with no facebook link is logged in and a Facebook user is connected
+<!-- ###NO_LINK_BUT_CONNECTED### begin -->
+###PROFILE###
+<p>
+	If you link your Facebook account to your website account you can log in using Facebook Connect.<br />
+	<a href="#" onclick="return submit_form('###PREFIXID###_link_form');">Link accounts</a>
+	<form action="###ACTION###" method="post" id="###PREFIXID###_link_form">
+		<input type="hidden" name="###PREFIXID###[link]" value="1" />
+	</form>
+</p> 
+<!-- ###NO_LINK_BUT_CONNECTED### end -->
+
+
+Info shown when the logged in FE user is linked to a Facebook user not currently connected.
+<!-- ###LINKED_NOT_CONNECTED### begin -->
+<p>
+	Your website user is linked to your Facebook account, but you are not currently connected.<br>
+	You can break the link if you wish: <a href="#" onclick="return submit_form('###PREFIXID###_unlink_form');">Unlink accounts</a>
+	<form action="###ACTION###" method="post" id="###PREFIXID###_unlink_form">
+		<input type="hidden" name="###PREFIXID###[unlink]" value="1" />
+	</form>
+</p> 
+###CONNECT_BUTTON### 
+<!-- ###LINKED_NOT_CONNECTED### end -->
+
+
+Info shown when the logged in FE user is linked to the connected Facebook user
+<!-- ###LINKED_AND_CONNECTED### begin -->
+###PROFILE###
+<p>
+	You can break the connection between your Facebook account and the website user.<br />
+	<a href="#" onclick="return submit_form('###PREFIXID###_unlink_form');">Unlink accounts</a>
+	<form action="###ACTION###" method="post" id="###PREFIXID###_unlink_form">
+		<input type="hidden" name="###PREFIXID###[unlink]" value="1" />
+	</form>
+</p> 
+<!-- ###LINKED_AND_CONNECTED### end -->
+
+
+Info shown when the logged in FE user is linked to another Facebook user than the connected Facebook user
+<!-- ###LINKED_AND_CONNECTED_MISMATCH### begin -->
+###PROFILE###
+<p>
+	Your website user is linked to another Facebook account.<br />
+	<a href="#" onclick="return submit_form('###PREFIXID###_unlink_form');">Unlink accounts</a>
+	<form action="###ACTION###" method="post" id="###PREFIXID###_unlink_form">
+		<input type="hidden" name="###PREFIXID###[unlink]" value="1" />
+	</form>
+</p> 
+<!-- ###LINKED_AND_CONNECTED_MISMATCH### end -->
+
+
