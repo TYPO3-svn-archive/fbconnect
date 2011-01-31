@@ -6,11 +6,14 @@
 	</meta>
 	<data type="array">
 		<languageKey index="default" type="array">
-			<label index="list_mode_1">Mode 1</label>
-			<label index="list_mode_2">Mode 2</label>
-			<label index="list_mode_3">Mode 3</label>
-			<label index="back">Back</label>
-			<label index="submit_button_label">Click here to submit value</label>
+			<label index="error_userExists">The desired user exists already.</label>
+			<label index="error_userIncomplete">The created user is incomplete.</label>
+			<label index="error_loggedIn">You cannot do that while logged in.</label>
+		</languageKey>
+		<languageKey index="de" type="array">
+			<label index="error_userExists">Der gewünschte Benutzer existiert bereits.</label>
+			<label index="error_userIncomplete">Der erstellte Benutzer ist unvollständig.</label>
+			<label index="error_loggedIn">Sie können dies nicht tun, wenn sie angemeldet sind.</label>
 		</languageKey>
 	</data>
 </T3locallang>

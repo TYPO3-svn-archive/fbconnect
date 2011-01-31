@@ -1,0 +1,6 @@
+plugin.tx_fbconnect_pi1 {
+	# cat=fbconnect; type=int+; label=User storage page:uid of the page where Frontend user records are stored
+	usersPid = 
+	# cat=fbconnect; type=string; label=Template file
+	templateFile = EXT:fbconnect/pi1/res/template.html
+}

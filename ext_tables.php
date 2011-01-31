@@ -30,6 +30,6 @@ t3lib_extMgm::addPlugin(array(
 ),'list_type');
 
 
-t3lib_extMgm::addStaticFile($_EXTKEY, "static/", "Facebook Connect");
+t3lib_extMgm::addStaticFile($_EXTKEY, "pi1/static/", "Facebook Connect");
 
 ?>

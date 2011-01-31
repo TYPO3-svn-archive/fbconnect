@@ -1,0 +1,82 @@
+plugin.tx_fbconnect_pi1 = USER_INT
+plugin.tx_fbconnect_pi1 {
+	# uid of the page where Frontend user records are stored
+	usersPid = {$plugin.tx_fbconnect_pi1.usersPid}
+	# Facebook API key
+	apiKey = {$plugin.tx_fbconnect_pi1.apiKey}
+	# Facebook application secret
+	secret = {$plugin.tx_fbconnect_pi1.secret}
+	# HTML template
+	templateFile = {$plugin.tx_fbconnect_pi1.templateFile}
+	
+	# each item has stdWrap
+	feUserMapping {
+		// change the usersPid to the proper storage pid
+		pid < plugin.tx_fbconnect_pi1.usersPid
+		
+		// change this to the usergroup(s) you need them to have
+		usergroup = 
+		
+		username {
+			field = id
+			wrap = fbuser|
+		}
+		
+		first_name {
+			field = first_name
+		}
+		
+		last_name {
+			field = last_name
+		}
+		
+		tx_fbconnect_user {
+			field = id
+		}
+		
+		crdate {
+			data = date:U
+		}
+		
+		tstamp {
+			data = date:U
+		}
+		
+		email {
+			field = email
+		}
+		
+		date_of_birth {
+			field = birthday
+		}
+	}
+	
+	redirectTypolink {
+		# typolink that points to the page to redirect to
+	}
+}
+
+// Include Facebook xmlns in html-tag
+config.htmlTag_setParams := appendString( xmlns:fb="http://www.facebook.com/2008/fbml")
+
+// Include our javascript file in the pages
+//page.includeJS.fbconnect = {$plugin.tx_fbconnect_pi1.javascriptFile}
+
+//page.includeJS.fbconnectImage = EXT:fbconnect/pi1/res/fb_image.js
+
+//page.includeJS.fbconnectApi = http://connect.facebook.net/en/all.js
+
+# example javascript that has to be included
+# this has to be triggered after all your dom are loaded
+# (in case of additional content beeing loaded by ajax you have to call it after the ajax content ist loaded!
+
+#    <script type="text/javascript">
+#      document.observe('ajax_login:loaded',
+#        function () {
+#          FB.init({appId: '*************', status: true,
+#            cookie: true, xfbml: true});
+#          FB.Event.subscribe('auth.login', function(response) {
+#            ajaxLogin.reload();
+#          });
+#        });
+#    </script>

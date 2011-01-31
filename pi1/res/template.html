@@ -6,25 +6,21 @@ See http://wiki.developers.facebook.com/index.php/JS_API_T_FB.Connect, look for 
 
 The Javascript needed on every page where we need Facebook magic
 <!-- ###INIT### begin -->
-<script src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php" type="text/javascript"></script>
-<script type="text/javascript">
-	FB_RequireFeatures(["XFBML"], function() {
-		FB.init("###APIKEY###", "/###SITERELPATH###res/xd_receiver.htm");
-	});
-</script>
 <!-- ###INIT### end -->
 
 
 The Facebook Connect button
 See different styles at http://wiki.developers.facebook.com/index.php/Fb:login-button
 <!-- ###CONNECT_BUTTON### begin -->
-<fb:login-button onlogin="###ONLOGIN###"></fb:login-button>
+<div id="fb-root"></div>
+<fb:login-button perms="user_birthday,email"></fb:login-button>
 <!-- ###CONNECT_BUTTON### end -->
 
 
 Profile picture and user name - inserted in templates below
 <!-- ###PROFILE### begin -->
 <div>
+	<div id="fb-root"></div>
 	<fb:profile-pic uid="###UID###" size="thumb" facebook-logo="true" linked="false"></fb:profile-pic><br />
 	<fb:name uid="###UID###" linked="false" useyou="false" ></fb:name>
 </div>
@@ -79,6 +75,7 @@ Info shown when the logged in FE user is linked to a Facebook user not currently
 Info shown when the logged in FE user is linked to the connected Facebook user
 <!-- ###LINKED_AND_CONNECTED### begin -->
 ###PROFILE###
+<!-- ###LINKED_AND_CONNECTED### end -->
 <p>
 	You can break the connection between your Facebook account and the website user.<br />
 	<a href="#" onclick="return submit_form('###PREFIXID###_unlink_form');">Unlink accounts</a>
@@ -86,7 +83,6 @@ Info shown when the logged in FE user is linked to the connected Facebook user
 		<input type="hidden" name="###PREFIXID###[unlink]" value="1" />
 	</form>
 </p> 
-<!-- ###LINKED_AND_CONNECTED### end -->
 
 
 Info shown when the logged in FE user is linked to another Facebook user than the connected Facebook user

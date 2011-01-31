@@ -1,0 +1,18 @@
+
+  # cat=basic//10; type=string; label= Facebook Application Key
+appKey =
+
+  # cat=basic//10; type=string; label= Facebook Application ID
+appId =
+
+  # cat=basic//10; type=string; label= Facebook Application Secret
+secret =
+
+  # cat=basic//10; type=boolean; label= Use a cookie to store the session
+useCookie =
+
+  # cat=basic//10; type=string; label= Cookie domain
+cookieDomain =
+
+  # cat=basic//10; type=string; label= Alternate header javascript
+headerJS =
